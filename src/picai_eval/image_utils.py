@@ -69,7 +69,7 @@ def read_image(path: PathLike):
     elif '.nii' in path or '.mha' in path or 'mhd' in path:
         return sitk.GetArrayFromImage(sitk.ReadImage(path))
     elif '.npz' in path:
-        return np.load(path)['softmax'].astype('float32')[1]  # nnUnet format
+        return np.load(path)['probabilities'].astype('float32')[1]  # nnUnetv2 format
     else:
         raise ValueError(f"Unexpected file path. Supported file formats: .nii(.gz), .mha, .npy and .npz. Got: {path}.")
 
